@@ -1,137 +1,176 @@
-var selectElementsStartingWithA = function(array) {
-    return "write your methode here!";
+const selectElementsStartingWithA = function(array) {
+    return [...array.filter(value => value.match('^[a/i].*'))]
 }
 
-var selectElementsStartingWithVowel = function(array) {
-    return "write your methode here!";
+const selectElementsStartingWithVowel = function(array) {
+    return [...array.filter(value => value.match('^[aieou/i].*'))]
 }
 
-var removeNullElements = function(array) {
-    return "write your methode here!";
+const removeNullElements = function(array) {
+    return [...array.filter(value => ![null].includes(value))]
 }
 
-var removeNullAndFalseElements = function(array) {
-    return "write your methode here!";
+const removeNullAndFalseElements = function(array) {
+    return [...array.filter(value => ![null, false].includes(value))]
 }
 
-var reverseWordsInArray = function(array) {
-    return "write your methode here!";
+const revStr = (string) => string.split("").reverse().join("")
+
+const reverseWordsInArray = function(array) {
+    return [...array.map(value => revStr(value))]
 }
 
-var everyPossiblePair = function(array) {
-    return "write your methode here!";
-}
-}
-
-var allElementsExceptFirstThree = function(array) {
-    return "write your methode here!";
-}
+const everyPossiblePair = function(array) {
+    return [...array.flatMap(
+      (value, index) => array.slice(index + 1).map(word => [value, word].sort())
+    ).sort()]
 }
 
-var addElementToBeginning = function(array, element) {
-    return 'Write your method here';
+const allElementsExceptFirstThree = function(array) {
+    return [...array.slice(3)]
 }
 
-var sortByLastLetter = function(array) {
-    return 'Write your method here';
+const addElementToBeginning = function(array, element) {
+    return [element, ...array]
 }
 
-var getFirstHalf = function(string) {
-    return 'Write your method here';
+const sortByLastLetter = function(array) {
+    return [...array.sort((a, b) => a.charCodeAt(a.length - 1) - b.charCodeAt(b.length - 1))]
 }
 
-var makeNegative = function(number) {
-    return 'Write your method here';
+const getFirstHalf = function(string) {
+    return string.slice(0, Math.ceil(string.length / 2))
 }
 
-var numberOfPalindromes = function(array) {
-    return 'Write your method here';
+const makeNegative = function(number) {
+    return number > 0 ? -number : number
 }
 
-var shortestWord = function(array) {
-    return 'Write your method here';
+const numberOfPalindromes = function(array) {
+    return (array.filter(value => value === revStr(value))).length
 }
 
-var longestWord = function(array) {
-    return 'Write your method here';
+const shortestWord = function(array) {
+    return array.reduce((prev, curr) => curr.length < prev.length ? curr : prev)
 }
 
-var sumNumbers = function(array) {
-    return 'Write your method here';
+const longestWord = function(array) {
+    return array.reduce((prev, curr) => curr.length > prev.length ? curr : prev)
 }
 
-var repeatElements = function(array) {
-    return 'Write your method here';
+const sumNumbers = function(array) {
+    return array.reduce((prev, curr) => prev + curr)
 }
 
-var stringToNumber = function(string) {
-    return 'Write your method here';
+const repeatElements = function(array) {
+    return [...array, ...array]
 }
 
-var calculateAverage = function(array) {
-    return 'Write your method here';
+const stringToNumber = function(string) {
+    return parseInt(string)
 }
 
-var getElementsUntilGreaterThanFive = function(array) {
-    return 'Write your method here';
+const calculateAverage = function(array) {
+    return array.reduce((prev, curr) => prev + curr) / array.length
 }
 
-var convertArrayToObject = function(array) {
-    return 'Write your method here';
+const getElementsUntilGreaterThanFive = function(array) {
+    return [...array.slice(0, array.findIndex(value => value > 5))]
 }
 
-var getAllLetters = function(array) {
-    return 'Write your method here';
+const convertArrayToObject = function(array) {
+    const object = {}
+    array.forEach((value, index) => {
+        if (index % 2 === 0)
+            object[value] = array[index + 1]
+    })
+    return object
 }
 
-var swapKeysAndValues = function(object) {
-    return 'Write your method here';
+const getAllLetters = function(array) {
+    return [...new Set(array.map(value => value.split("")).flatMap(x => x).sort())]
 }
 
-var sumKeysAndValues = function(object) {
-    return 'Write your method here';
+const swapKeysAndValues = function(object) {
+    const newObj = {}
+    Object.keys(object).forEach(key => newObj[object[key]] = key)
+    return newObj
 }
 
-var removeCapitals = function(string) {
-    return 'Write your method here';
+const sumKeysAndValues = function(object) {
+    let count = 0
+    Object.keys(object).forEach(key => count += parseInt(object[key]) + parseInt(key))
+    return count
 }
 
-var roundUp = function(number) {
-    return 'Write your method here';
+const removeCapitals = function(string) {
+    return string.split('').filter(value => value !== value.toUpperCase() | value === ' ').join('')
 }
 
-var formatDateNicely = function(date) {
-    return 'Write your method here';
+const roundUp = function(number) {
+    return Math.ceil(number)
 }
 
-var getDomainName = function(string) {
-    return 'Write your method here';
+const formatDateNicely = function(date) {
+    return date.toLocaleDateString('fr-FR')
 }
 
-var titleize = function(string) {
-    return 'Write your method here';
+const getDomainName = function(string) {
+    return string.match('(?<=@)[^.]*.[^.]*(?=\\.)')[0]
 }
 
-var checkForSpecialCharacters = function(string) {
-    return 'Write your method here';
+const titleize = function(string) {
+    string = string.split(' ').map(value => value.length > 3 ? value.charAt(0).toUpperCase() + value.slice(1) : value).join(' ')
+    string = string.split('. ').map(value => value.charAt(0).toUpperCase() + value.slice(1)).join('. ')
+    return string
 }
 
-var squareRoot = function(number) {
-    return 'Write your method here';
+const checkForSpecialCharacters = function(string) {
+    const regex = /\W|_/g
+    return regex.test(string)
 }
 
-var factorial = function(number) {
-    return 'Write your method here';
+const squareRoot = function(number) {
+    return Math.sqrt(number)
 }
 
-var findAnagrams = function(string) {
-    return 'Write your method here';
+const factorial = function(number) {
+    if (number < 0)
+        return -1;
+    else if (number === 0)
+        return 1;
+    else {
+        return (number * factorial(number - 1));
+    }
 }
 
-var convertToCelsius = function(number) {
-    return 'Write your method here';
+const findAnagrams = function(string) {
+    if (string.length < 2) {
+        return [string];
+    }
+    const anagrams = [];
+    let before, current, after;
+    let shortWord, subAnagrams, newEntry;
+
+    for (let i = 0; i < string.length; i++) {
+        before = string.slice(0, i);
+        current = string[i];
+        after = string.slice(i + 1, string.length + 1);
+        shortWord = before + after;
+        subAnagrams = findAnagrams(shortWord);
+
+        for (let j = 0; j < subAnagrams.length; j++){
+            newEntry = current + subAnagrams[j];
+            anagrams.push(newEntry);
+        }
+    }
+    return anagrams;
 }
 
-var letterPosition = function(array) {
-    return 'Write your method here';
+const convertToCelsius = function(number) {
+    return Math.ceil((number - 32) * 5 / 9)
+}
+
+const letterPosition = function(array) {
+    return [...array].map(a => parseInt(a, 36) - 9).filter(a => a >= 0)
 }
